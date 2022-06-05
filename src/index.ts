@@ -14,16 +14,15 @@ if (!process.env.BOT_TOKEN) {
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-bot.start((ctx) => ctx.reply("Welcome"));
+bot.start((ctx) => ctx.reply("Привет, бот ещё в разработке)) не бей"));
 commands.forEach(({ name, callback }) => bot.command(name, callback));
 bot.on("sticker", (ctx) => ctx.reply("👍"));
 bot.help((ctx) => {
   const fileData = fs.readFileSync("help.txt", { encoding: "utf-8" });
-  console.log(fileData);
-
-  ctx.reply("help");
+  ctx.reply("В работе");
 });
 bot.launch();
 
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
+process.once("SIGKILL", () => bot.stop("SIGKILL"));
